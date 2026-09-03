@@ -554,7 +554,7 @@ registerScene('ch4_reward', ()=>{
     <span class="tag-label">Bab 4 · Selesai</span>
     <h2 class="title">Kenangan di Jalan</h2>
     <div class="memory-card"><img src="${IMG.pd}"><div class="cap"><div class="k">Kenangan: Jalan yang Sama</div><p>Cermin jalan memantulkan dua orang menyusuri jalan desa dalam perasaan "pulang".</p></div></div>
-    <div class="memory-card"><img src="${IMG.pc}"><div class="cap"><div class="k">Kenangan: Selalu Bersiap Jalan Lagi</div><p>Dua orang manis, tersenyum lebar, siap melanjutkan perjalanan — apapun rintangannya.</p></div></div>
+    <div class="memory-card"><img src="${IMG.pc}"><div class="cap"><div class="k">Kenangan: Selalu Bersiap Jalan Lagi</div><p>Dua orang tersenyum manis, siap melanjutkan perjalanan — apapun rintangannya.</p></div></div>
     <div class="panel"><p class="lore">Kunang berhenti di depanmu, cahayanya lebih terang dari sebelumnya. "Kamu sudah membawa hampir semua cahaya yang dibutuhkan, Ra. Tinggal satu gerbang lagi."</p></div>
     <button class="btn primary block" id="toFinal">Menuju Gerbang Usia Baru →</button>
   `;
