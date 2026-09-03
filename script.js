@@ -48,6 +48,7 @@ const SEQ_MARKERS = [
   {id:'y2', order:2, year:'September Kedua', text:'Pisang bakar ceres yang gagal, lalu buru-buru berangkat ke Baturaden menjenguk si kecil.'},
   {id:'y3', order:3, year:'September Ketiga', text:'Dua hati merayakan di dua kota berbeda — lalu menyusul ketemu di Bandung, lengkap dengan cerita ban bocor.'},
   {id:'y4', order:4, year:'September Keempat', text:'Rencana besar penuh badai, tapi berakhir dengan sebuah janji: dijaga seumur hidup.'},
+  {id:'y5', order:5, year:'September Kelima', text:'Bunga matahari di rumah kakek.'},
 ];
 
 const PUZZLES_HINTS = {
@@ -56,7 +57,7 @@ const PUZZLES_HINTS = {
   ch3_zodiac: ["Lihat lagi roda perbintangan itu — cari nama julukan yang muncul di jurnal lama.", "'Macan Tanah' bukan cuma julukan sayang — itu juga nama tahun di roda zodiak.", "Macan Tanah ada di tahun 1998. Itu angka pentingnya."],
   ch3_cipher: ["Setiap huruf di gulungan rune punya pasangan hurufnya sendiri di kunci rune.", "Cari huruf pada gulungan satu per satu di kolom kiri kunci, lalu tulis pasangannya di kolom kanan.", "Kata itu akan menjadi 'SEPTEMBER' kalau diterjemahkan dengan benar."],
   ch3_gate: ["Gerbang ini minta satu angka yang menggabungkan bulan suci itu dengan usia yang sedang dikejar malam ini.", "Bulan itu bulan ke-9. Usia yang dikejar adalah 28.", "Masukkan 928 — sembilan (September) lalu dua puluh delapan (usia baru)."],
-  ch4: ["Ingat lagi urutannya: kado dadakan dulu, baru pisang bakar & Baturaden, baru Bandung & ban bocor, baru janji pernikahan.", "Petunjuk paling jelas ada di kata 'buru-buru ke Baturaden' — itu terjadi SETELAH pisang bakar, bukan sebelum kaos.", "Urutan yang benar: Kaos&Lampu → Pisang Bakar&Baturaden → Bandung&Ban Bocor → Janji Pernikahan."],
+  ch4: ["Ingat lagi urutannya: kado dadakan dulu, baru pisang bakar & Baturaden, baru Bandung & ban bocor, baru janji pernikahan, dan yang paling baru: bunga matahari di rumah kakek.", "Petunjuk paling jelas ada di kata 'buru-buru ke Baturaden' — itu terjadi SETELAH pisang bakar, bukan sebelum kaos. Dan bunga matahari itu kejadian paling akhir dari semuanya.", "Urutan yang benar: Kaos&Lampu → Pisang Bakar&Baturaden → Bandung&Ban Bocor → Janji Pernikahan → Bunga Matahari di Rumah Kakek."],
   final: ["Gerbang usia baru ini cuma minta satu hal: nyalakan semua serpihan cahaya yang sudah kamu kumpulkan.", "Kamu sudah membawa cukup cahaya. Coba tarik tuas gerbangnya.", "Serius, Ra — tinggal disentuh saja gerbangnya. Tidak ada jebakan lagi."]
 };
 
@@ -221,8 +222,8 @@ registerScene('prologue', ()=>{
 const CH1_SPOTS = [
   {id:'window', emoji:'🪟', label:'Jendela kayu', note:'Cahaya bulan masuk lewat sini. Ada empat jendela kalau dihitung — kamu baru sadar sekarang.'},
   {id:'lamp', emoji:'🏮', label:'Lampu gantung', note:'Nyalanya berubah warna sendiri. Rasanya familiar... seperti pernah ada yang punya lampu begini juga.'},
-  {id:'shelf', emoji:'📚', label:'Rak buku tua', note:'Salah satu buku berjudul "Catatan Perjalanan — Lima Musim". Halamannya kosong, menunggu diisi. Ada 3 batang lilin menyala di sebelahnya.'},
-  {id:'hearth', emoji:'🔥', label:'Perapian', note:'Api di sini tidak panas, hanya hangat. Persis seperti pelukan di lorong rumah, suatu malam.'},
+  {id:'shelf', emoji:'📚', label:'Rak buku tua', note:'Salah satu buku berjudul "Catatan Perjalanan — Lima Musim". Empat halaman terisi, satu halaman kosong, menunggu diisi. Ada 3 batang lilin menyala di sebelahnya.'},
+  {id:'hearth', emoji:'🔥', label:'Perapian', note:'Api di sini tidak panas, hanya hangat. Persis seperti sentuhan Babi Kayu, suatu malam.'},
 ];
 registerScene('ch1_intro', ()=>{
   const s = el('div','scene-inner');
@@ -463,8 +464,8 @@ registerScene('ch3_reward', ()=>{
     <span class="tag-label">Bab 3 · Selesai</span>
     <h2 class="title">Tiga Kenangan di Puncak</h2>
     <div class="memory-card"><img src="${IMG.p4}"><div class="cap"><div class="k">Visi: Puncak</div><p>Tersenyum di puncak, dengan langit yang akhirnya cerah setelah jalan panjang.</p></div></div>
-    <div class="memory-card"><img src="${IMG.p5}"><div class="cap"><div class="k">Visi: Lautan Awan</div><p>Menatap lautan awan, tangan terkatup — rasa syukur yang tidak perlu banyak kata.</p></div></div>
-    <div class="memory-card"><img src="${IMG.pa}"><div class="cap"><div class="k">Kenangan: Tim yang Tumbuh</div><p>Berdiri berdua di bukit hijau, dua jempol terangkat. Dua orang yang tadinya sangat berbeda, belajar caranya berjalan searah.</p></div></div>
+    <div class="memory-card"><img src="${IMG.p5}"><div class="cap"><div class="k">Visi: Lautan Awan</div><p>Sumeringah dan bahagia di atas lautan awan yang setelah ini pasti akan selalu kamu rindukan</p></div></div>
+    <div class="memory-card"><img src="${IMG.pa}"><div class="cap"><div class="k">Kenangan: Tim yang Tumbuh</div><p>Dua Jempol untuk keringat perjalanan kita yang sangat ramai rasa. Dua orang yang tadinya sangat berbeda, belajar caranya berjalan searah. Akan aku temani sampai September yang sangat jauh.</p></div></div>
     <div class="panel"><p class="lore">Kunang duduk di bahumu sebentar. "Kadang dua orang harus banyak berbeda dulu, sebelum akhirnya nemu cara buat saling melengkapi. Kamu tahu itu lebih dari siapapun, Ra."</p></div>
     <button class="btn primary block" id="toCh4">Lanjut ke Jalan September →</button>
   `;
@@ -484,7 +485,7 @@ registerScene('ch4_intro', ()=>{
     <h2 class="title">Empat Penanda Jalan</h2>
     <div class="scene-bg" style="background-image:url('${IMG.pd}')"></div>
     <div class="panel">
-      <p class="lore">Jalan ini punya empat penanda batu, tapi urutannya kacau — mungkin kena longsor. Susun ulang dari yang paling awal ke yang paling akhir. Seret penanda untuk mengubah urutan (atau tekan tombol panah kalau lebih gampang).</p>
+      <p class="lore">Jalan ini punya lima penanda batu, tapi urutannya kacau — mungkin kena longsor. Susun ulang dari yang paling awal ke yang paling akhir. Seret penanda untuk mengubah urutan (atau tekan tombol panah kalau lebih gampang).</p>
     </div>
     <div class="seq-list" id="seqList"></div>
     <div class="btn-row">
@@ -500,7 +501,7 @@ registerScene('ch4_intro', ()=>{
       const m = SEQ_MARKERS.find(x=>x.id===id);
       const item = el('div','seq-item'); item.draggable = true; item.dataset.id = id;
       item.innerHTML = `<span class="handle">☰</span><span class="num">${idx+1}</span>
-        <div class="txt"><b>${m.year}</b><span>${m.text}</span></div>
+        <div class="txt"><span>${m.text}</span></div>
         <div style="display:flex; flex-direction:column; gap:4px;">
           <button class="btn ghost sm" style="padding:4px 8px; min-height:28px;" data-dir="up">▲</button>
           <button class="btn ghost sm" style="padding:4px 8px; min-height:28px;" data-dir="down">▼</button>
@@ -552,8 +553,8 @@ registerScene('ch4_reward', ()=>{
   s.innerHTML = `
     <span class="tag-label">Bab 4 · Selesai</span>
     <h2 class="title">Kenangan di Jalan</h2>
-    <div class="memory-card"><img src="${IMG.pd}"><div class="cap"><div class="k">Kenangan: Jalan yang Sama</div><p>Cermin jalan memantulkan dua orang di atas motor, menyusuri jalan desa.</p></div></div>
-    <div class="memory-card"><img src="${IMG.pc}"><div class="cap"><div class="k">Kenangan: Selalu Bersiap Jalan Lagi</div><p>Dua orang berhelm, tersenyum lebar, siap melanjutkan perjalanan — apapun rintangannya.</p></div></div>
+    <div class="memory-card"><img src="${IMG.pd}"><div class="cap"><div class="k">Kenangan: Jalan yang Sama</div><p>Cermin jalan memantulkan dua orang menyusuri jalan desa dalam perasaan "pulang".</p></div></div>
+    <div class="memory-card"><img src="${IMG.pc}"><div class="cap"><div class="k">Kenangan: Selalu Bersiap Jalan Lagi</div><p>Dua orang manis, tersenyum lebar, siap melanjutkan perjalanan — apapun rintangannya.</p></div></div>
     <div class="panel"><p class="lore">Kunang berhenti di depanmu, cahayanya lebih terang dari sebelumnya. "Kamu sudah membawa hampir semua cahaya yang dibutuhkan, Ra. Tinggal satu gerbang lagi."</p></div>
     <button class="btn primary block" id="toFinal">Menuju Gerbang Usia Baru →</button>
   `;
@@ -692,6 +693,16 @@ function boot(){
 }
 $('#beginBtn').addEventListener('click', ()=>{
   $('#introScreen').style.display='none';
+  // Best-effort fullscreen — must be requested synchronously from a real
+  // user gesture (this click) or browsers reject it. Not every browser
+  // supports it for arbitrary pages (notably iOS Safari doesn't, at all),
+  // so this fails silently there and the game is exactly as playable
+  // without it — never block startup on this.
+  try {
+    const el = document.documentElement;
+    const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+    if (req) req.call(el).catch(()=>{});
+  } catch(e) { /* fullscreen unsupported/denied — fine, continue anyway */ }
   initAudio();
   boot();
 });
