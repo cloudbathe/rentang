@@ -647,7 +647,7 @@ registerScene('ending', ()=>{
       <p class="lore" id="voucherDesc" style="margin:0;"></p>
     </div>
     <div class="divider"></div>
-    <h2 class="title" style="font-size:1.05rem;">Semua Kenangan yang Terkumpul</h2>
+    <h2 class="title" style="font-size:1.05rem;">Happy Birthday My Dear!</h2>
     <div class="montage" id="montageGrid"></div>
     <div class="panel">
       <p class="lore" id="finalMsg" style="text-align:center; font-style:italic; margin:0;"></p>
