@@ -240,17 +240,24 @@ select.year-select{
   position:fixed; inset:0; z-index:55; display:flex; flex-direction:column; align-items:center; justify-content:center;
   background:radial-gradient(ellipse at 50% 20%, #1b2b46 0%, #070c15 70%); text-align:center; padding:26px;
 }
-.dwarf-walker{ margin-bottom:14px; overflow:visible; filter:drop-shadow(0 2px 5px rgba(0,0,0,.45)); }
+.dwarf-walker{ margin-bottom:14px; overflow:visible; filter:drop-shadow(0 3px 6px rgba(0,0,0,.55)); }
+/* Dark, night-time silhouette — a low-opacity charcoal fill so it stays a
+   shadow rather than a lit-up figure, defined mainly by a thin warm
+   candlelight rim instead of brightness. */
 .dwarf-walker .dw-robe,
-.dwarf-walker .dw-hood,
-.dwarf-walker .dw-leg rect{ fill:var(--ink-dim); stroke:#2c2416; stroke-width:1; }
-.dwarf-walker .dw-arm{ fill:none; stroke:var(--ink-dim); stroke-width:6; stroke-linecap:round; }
+.dwarf-walker .dw-head,
+.dwarf-walker .dw-pauldron,
+.dwarf-walker .dw-beard,
+.dwarf-walker .dw-leg rect{ fill:#141a26; stroke:rgba(232,199,116,.4); stroke-width:1; }
+.dwarf-walker .dw-beard{ fill:#10141d; }
+.dwarf-walker .dw-arm{ fill:none; stroke:#141a26; stroke-width:7; stroke-linecap:round; }
 .dwarf-walker .dw-candle{ fill:var(--gold-soft); }
-.dwarf-walker .dw-flame{ fill:var(--gold); transform-origin:53px 12px; animation:dw-flicker .5s ease-in-out infinite alternate; }
-.dwarf-walker .dw-flame-glow{ fill:var(--gold); opacity:.18; filter:blur(3px); animation:dw-flicker .5s ease-in-out infinite alternate; }
-.dwarf-walker .dw-leg-back{ transform-origin:28px 66px; animation:dw-leg-back .9s ease-in-out infinite; }
-.dwarf-walker .dw-leg-front{ transform-origin:38px 66px; animation:dw-leg-front .9s ease-in-out infinite; }
-.dwarf-walker .dw-robe, .dwarf-walker .dw-hood, .dwarf-walker .dw-arm, .dwarf-walker .dw-candle{
+.dwarf-walker .dw-flame{ fill:var(--gold); transform-origin:61px 11px; animation:dw-flicker .5s ease-in-out infinite alternate; }
+.dwarf-walker .dw-flame-glow{ fill:var(--gold); opacity:.15; filter:blur(3px); animation:dw-flicker .5s ease-in-out infinite alternate; }
+.dwarf-walker .dw-leg-back{ transform-origin:26px 68px; animation:dw-leg-back .9s ease-in-out infinite; }
+.dwarf-walker .dw-leg-front{ transform-origin:41px 68px; animation:dw-leg-front .9s ease-in-out infinite; }
+.dwarf-walker .dw-robe, .dwarf-walker .dw-head, .dwarf-walker .dw-pauldron,
+.dwarf-walker .dw-beard, .dwarf-walker .dw-arm, .dwarf-walker .dw-candle{
   animation:dw-bob .9s ease-in-out infinite;
 }
 @keyframes dw-bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-2px); } }
