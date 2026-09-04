@@ -207,6 +207,11 @@ function renderSceneNow(key, chapterTagText, questText){
   if(questText) $('#questLine').textContent = questText;
   state.currentScene = key; saveState();
   scenesEl.scrollTop = 0;
+  // Fireflies only drift in on the Quest Complete screen — a little nod to
+  // Kunang — and fade back out the moment the player navigates elsewhere
+  // (replay, reset, anywhere).
+  const fireflies = $('#fireflyField');
+  if(fireflies) fireflies.classList.toggle('show', key === 'ending');
 }
 /**
  * Plays a stone-gate-opening transition, then reveals the scene mid-swing
