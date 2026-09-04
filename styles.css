@@ -240,11 +240,11 @@ select.year-select{
   position:fixed; inset:0; z-index:55; display:flex; flex-direction:column; align-items:center; justify-content:center;
   background:radial-gradient(ellipse at 50% 20%, #1b2b46 0%, #070c15 70%); text-align:center; padding:26px;
 }
-.dwarf-walker{ margin-bottom:14px; overflow:visible; }
+.dwarf-walker{ margin-bottom:14px; overflow:visible; filter:drop-shadow(0 2px 5px rgba(0,0,0,.45)); }
 .dwarf-walker .dw-robe,
 .dwarf-walker .dw-hood,
-.dwarf-walker .dw-leg rect{ fill:#0b0f1a; }
-.dwarf-walker .dw-arm{ fill:none; stroke:#0b0f1a; stroke-width:6; stroke-linecap:round; }
+.dwarf-walker .dw-leg rect{ fill:var(--ink-dim); stroke:#2c2416; stroke-width:1; }
+.dwarf-walker .dw-arm{ fill:none; stroke:var(--ink-dim); stroke-width:6; stroke-linecap:round; }
 .dwarf-walker .dw-candle{ fill:var(--gold-soft); }
 .dwarf-walker .dw-flame{ fill:var(--gold); transform-origin:53px 12px; animation:dw-flicker .5s ease-in-out infinite alternate; }
 .dwarf-walker .dw-flame-glow{ fill:var(--gold); opacity:.18; filter:blur(3px); animation:dw-flicker .5s ease-in-out infinite alternate; }
@@ -271,30 +271,51 @@ select.year-select{
 #fadeOverlay.show{opacity:1; pointer-events:auto;}
 /* ---------- gate-opening reveal (Quest Complete only) ---------- */
 #gateOverlay{
-  position:fixed; inset:0; z-index:65; pointer-events:none;
+  position:fixed; inset:0; z-index:65; pointer-events:none; overflow:hidden;
   opacity:0; visibility:hidden; transition:opacity .3s ease, visibility 0s linear .3s;
 }
 #gateOverlay.show{ opacity:1; visibility:visible; pointer-events:auto; transition:opacity .2s ease; }
+/* Each panel is a castle door leaf: dark timber planks, iron bands with
+   rivets, a ring handle, and a pointed-arch top cut with clip-path so the
+   two leaves meet in a Gothic arch instead of a flat rectangle seam. */
 .gate-panel{
-  position:absolute; top:0; bottom:0; width:50%;
-  background:linear-gradient(180deg, #1b2b46 0%, #0c1220 55%, #070c15 100%);
-  box-shadow:inset 0 0 60px rgba(232,199,116,.08);
-  transition:transform 1.4s cubic-bezier(.6,0,.15,1);
-}
-.gate-left{ left:0; border-right:2px solid var(--gold-soft); transform:translateX(0); }
-.gate-right{ right:0; border-left:2px solid var(--gold-soft); transform:translateX(0); }
-#gateOverlay.opening .gate-left{ transform:translateX(-100%); }
-#gateOverlay.opening .gate-right{ transform:translateX(100%); }
-.gate-carving{
-  position:absolute; inset:14px; border:1px solid rgba(232,199,116,.25); border-radius:6px;
+  position:absolute; top:0; bottom:0; width:53%;
   background-image:
-    repeating-linear-gradient(0deg, rgba(232,199,116,.05) 0 2px, transparent 2px 26px),
-    repeating-linear-gradient(90deg, rgba(232,199,116,.05) 0 2px, transparent 2px 26px);
+    repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 2px, transparent 2px 22px),
+    linear-gradient(180deg, #6b4a2e 0%, #4a3220 55%, #241608 100%);
+  box-shadow:inset 0 0 90px rgba(0,0,0,.55), inset 0 0 40px rgba(232,199,116,.06);
+  transition:transform 1.5s cubic-bezier(.6,0,.15,1);
 }
+.gate-left{ left:0; clip-path:polygon(0 0, 66% 0, 100% 15%, 100% 100%, 0 100%); }
+.gate-right{ right:0; clip-path:polygon(34% 0, 100% 0, 100% 100%, 0 100%, 0 15%); }
+#gateOverlay.opening .gate-left{ transform:translateX(-104%); }
+#gateOverlay.opening .gate-right{ transform:translateX(104%); }
+.gate-carving{
+  position:absolute; inset:16px; border:2px solid rgba(232,199,116,.28); border-radius:4px;
+  box-shadow:inset 0 0 0 6px rgba(0,0,0,.28);
+}
+.gate-band{
+  position:absolute; left:6%; right:6%; height:15px; margin-top:-8px;
+  background-image:
+    radial-gradient(circle, #8a8a86 0 3px, transparent 3.5px),
+    linear-gradient(180deg,#45454a,#17171a);
+  background-size:32px 100%, 100% 100%;
+  background-repeat:repeat-x, no-repeat;
+  background-position:12px center, 0 0;
+  box-shadow:0 1px 0 rgba(255,255,255,.08), 0 3px 6px rgba(0,0,0,.5);
+}
+.gate-ring{
+  position:absolute; top:50%; width:26px; height:26px; border-radius:50%; transform:translateY(-50%);
+  border:5px solid #2b2b2b;
+  background:radial-gradient(circle at 35% 30%, #6b6b66, #2b2b2b 70%);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.08), 0 2px 4px rgba(0,0,0,.6);
+}
+.gate-left .gate-ring{ right:9%; }
+.gate-right .gate-ring{ left:9%; }
 .gate-glow{
   position:absolute; top:50%; left:50%; width:10px; height:10px; border-radius:50%;
   background:radial-gradient(circle, rgba(255,238,190,.95) 0%, rgba(232,199,116,.55) 35%, transparent 70%);
-  transform:translate(-50%,-50%) scale(1); opacity:0;
+  transform:translate(-50%,-50%) scale(1); opacity:0; z-index:2;
 }
 #gateOverlay.opening .gate-glow{ animation:gate-flash 1.6s ease-out forwards; }
 @keyframes gate-flash{
@@ -302,6 +323,31 @@ select.year-select{
   15%{ opacity:1; transform:translate(-50%,-50%) scale(3); }
   55%{ opacity:.85; transform:translate(-50%,-50%) scale(40); }
   100%{ opacity:0; transform:translate(-50%,-50%) scale(70); }
+}
+/* Smoke billowing out from the seam the instant the doors crack open. */
+.gate-smoke{ position:absolute; top:50%; left:50%; width:0; height:0; z-index:1; }
+.puff{
+  position:absolute; left:0; top:0; width:70px; height:70px; margin:-35px 0 0 -35px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(232,228,220,.55) 0%, rgba(232,228,220,.2) 55%, transparent 75%);
+  filter:blur(2px); opacity:0;
+}
+.puff.p2{ left:-42px; top:8px; }
+.puff.p3{ left:40px; top:-10px; }
+.puff.p4{ left:-18px; top:-24px; width:52px; height:52px; margin:-26px 0 0 -26px; }
+.puff.p5{ left:24px; top:20px; width:56px; height:56px; margin:-28px 0 0 -28px; }
+.puff.p6{ left:0; top:-4px; width:92px; height:92px; margin:-46px 0 0 -46px; }
+#gateOverlay.opening .puff{ animation:gate-smoke-rise 2.2s ease-out forwards; }
+.puff.p1{ animation-delay:.12s; }
+.puff.p2{ animation-delay:.28s; }
+.puff.p3{ animation-delay:.22s; }
+.puff.p4{ animation-delay:.42s; }
+.puff.p5{ animation-delay:.48s; }
+.puff.p6{ animation-delay:.58s; }
+@keyframes gate-smoke-rise{
+  0%{ opacity:0; transform:translateY(0) scale(.4); }
+  22%{ opacity:.75; }
+  100%{ opacity:0; transform:translateY(-95px) scale(2.5); }
 }
 /* ---------- reset confirm ---------- */
 .confirm-box{position:fixed; inset:0; z-index:70; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; padding:20px;}
