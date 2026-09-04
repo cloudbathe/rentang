@@ -1,4 +1,3 @@
-
 :root{
   --ink:#f4ecd8;
   --ink-dim:#cbb994;
@@ -219,7 +218,9 @@ select.year-select{
 #toast{
   position:fixed; top:14px; left:50%; transform:translate(-50%,-140%); z-index:40;
   background:var(--gold); color:#20160a; font-weight:700; font-size:.85rem;
-  padding:10px 18px; border-radius:999px; box-shadow:var(--shadow); transition:transform .4s ease; white-space:nowrap;
+  padding:10px 18px; border-radius:18px; box-shadow:var(--shadow); transition:transform .4s ease;
+  white-space:normal; word-wrap:break-word; text-align:center; line-height:1.4;
+  width:max-content; max-width:min(88vw, 380px); box-sizing:border-box;
 }
 #toast.show{transform:translate(-50%,0);}
 /* ---------- final / ending ---------- */
@@ -239,12 +240,23 @@ select.year-select{
   position:fixed; inset:0; z-index:55; display:flex; flex-direction:column; align-items:center; justify-content:center;
   background:radial-gradient(ellipse at 50% 20%, #1b2b46 0%, #070c15 70%); text-align:center; padding:26px;
 }
-.loading-spinner{
-  width:34px; height:34px; border-radius:50%;
-  border:3px solid rgba(232,199,116,.22); border-top-color:var(--gold);
-  animation:loading-spin .85s linear infinite; margin-bottom:16px;
+.dwarf-walker{ margin-bottom:14px; overflow:visible; }
+.dwarf-walker .dw-robe,
+.dwarf-walker .dw-hood,
+.dwarf-walker .dw-leg rect{ fill:#0b0f1a; }
+.dwarf-walker .dw-arm{ fill:none; stroke:#0b0f1a; stroke-width:6; stroke-linecap:round; }
+.dwarf-walker .dw-candle{ fill:var(--gold-soft); }
+.dwarf-walker .dw-flame{ fill:var(--gold); transform-origin:53px 12px; animation:dw-flicker .5s ease-in-out infinite alternate; }
+.dwarf-walker .dw-flame-glow{ fill:var(--gold); opacity:.18; filter:blur(3px); animation:dw-flicker .5s ease-in-out infinite alternate; }
+.dwarf-walker .dw-leg-back{ transform-origin:28px 66px; animation:dw-leg-back .9s ease-in-out infinite; }
+.dwarf-walker .dw-leg-front{ transform-origin:38px 66px; animation:dw-leg-front .9s ease-in-out infinite; }
+.dwarf-walker .dw-robe, .dwarf-walker .dw-hood, .dwarf-walker .dw-arm, .dwarf-walker .dw-candle{
+  animation:dw-bob .9s ease-in-out infinite;
 }
-@keyframes loading-spin{ to{ transform:rotate(360deg); } }
+@keyframes dw-bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-2px); } }
+@keyframes dw-leg-back{ 0%,100%{ transform:rotate(16deg); } 50%{ transform:rotate(-16deg); } }
+@keyframes dw-leg-front{ 0%,100%{ transform:rotate(-16deg); } 50%{ transform:rotate(16deg); } }
+@keyframes dw-flicker{ 0%{ transform:scale(1,1); opacity:1; } 100%{ transform:scale(.85,1.12); opacity:.8; } }
 .loading-text{color:var(--ink-dim); font-size:.85rem; letter-spacing:.03em;}
 /* ---------- intro ---------- */
 #introScreen{
@@ -257,6 +269,40 @@ select.year-select{
 /* ---------- fade transition overlay ---------- */
 #fadeOverlay{position:fixed; inset:0; background:#070c15; z-index:60; opacity:0; pointer-events:none; transition:opacity .4s ease;}
 #fadeOverlay.show{opacity:1; pointer-events:auto;}
+/* ---------- gate-opening reveal (Quest Complete only) ---------- */
+#gateOverlay{
+  position:fixed; inset:0; z-index:65; pointer-events:none;
+  opacity:0; visibility:hidden; transition:opacity .3s ease, visibility 0s linear .3s;
+}
+#gateOverlay.show{ opacity:1; visibility:visible; pointer-events:auto; transition:opacity .2s ease; }
+.gate-panel{
+  position:absolute; top:0; bottom:0; width:50%;
+  background:linear-gradient(180deg, #1b2b46 0%, #0c1220 55%, #070c15 100%);
+  box-shadow:inset 0 0 60px rgba(232,199,116,.08);
+  transition:transform 1.4s cubic-bezier(.6,0,.15,1);
+}
+.gate-left{ left:0; border-right:2px solid var(--gold-soft); transform:translateX(0); }
+.gate-right{ right:0; border-left:2px solid var(--gold-soft); transform:translateX(0); }
+#gateOverlay.opening .gate-left{ transform:translateX(-100%); }
+#gateOverlay.opening .gate-right{ transform:translateX(100%); }
+.gate-carving{
+  position:absolute; inset:14px; border:1px solid rgba(232,199,116,.25); border-radius:6px;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(232,199,116,.05) 0 2px, transparent 2px 26px),
+    repeating-linear-gradient(90deg, rgba(232,199,116,.05) 0 2px, transparent 2px 26px);
+}
+.gate-glow{
+  position:absolute; top:50%; left:50%; width:10px; height:10px; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,238,190,.95) 0%, rgba(232,199,116,.55) 35%, transparent 70%);
+  transform:translate(-50%,-50%) scale(1); opacity:0;
+}
+#gateOverlay.opening .gate-glow{ animation:gate-flash 1.6s ease-out forwards; }
+@keyframes gate-flash{
+  0%{ opacity:0; transform:translate(-50%,-50%) scale(1); }
+  15%{ opacity:1; transform:translate(-50%,-50%) scale(3); }
+  55%{ opacity:.85; transform:translate(-50%,-50%) scale(40); }
+  100%{ opacity:0; transform:translate(-50%,-50%) scale(70); }
+}
 /* ---------- reset confirm ---------- */
 .confirm-box{position:fixed; inset:0; z-index:70; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; padding:20px;}
 .confirm-box .panel{max-width:340px; text-align:center;}
