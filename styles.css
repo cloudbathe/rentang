@@ -252,8 +252,8 @@ select.year-select{
 .dwarf-walker .dw-beard{ fill:#10141d; }
 .dwarf-walker .dw-arm{ fill:none; stroke:#141a26; stroke-width:7; stroke-linecap:round; }
 .dwarf-walker .dw-candle{ fill:var(--gold-soft); }
-.dwarf-walker .dw-flame{ fill:var(--gold); transform-origin:61px 11px; animation:dw-flicker .5s ease-in-out infinite alternate; }
-.dwarf-walker .dw-flame-glow{ fill:var(--gold); opacity:.15; filter:blur(3px); animation:dw-flicker .5s ease-in-out infinite alternate; }
+.dwarf-walker .dw-flame{ fill:var(--gold); transform-box:fill-box; transform-origin:50% 100%; animation:dw-flicker .5s ease-in-out infinite alternate; }
+.dwarf-walker .dw-flame-glow{ fill:var(--gold); opacity:.15; filter:blur(3px); transform-box:fill-box; transform-origin:50% 100%; animation:dw-flicker .5s ease-in-out infinite alternate; }
 .dwarf-walker .dw-leg-back{ transform-origin:26px 68px; animation:dw-leg-back .9s ease-in-out infinite; }
 .dwarf-walker .dw-leg-front{ transform-origin:41px 68px; animation:dw-leg-front .9s ease-in-out infinite; }
 .dwarf-walker .dw-robe, .dwarf-walker .dw-head, .dwarf-walker .dw-pauldron,
@@ -355,6 +355,46 @@ select.year-select{
   0%{ opacity:0; transform:translateY(0) scale(.4); }
   22%{ opacity:.75; }
   100%{ opacity:0; transform:translateY(-95px) scale(2.5); }
+}
+/* ---------- fireflies (Quest Complete ambience) ---------- */
+#fireflyField{
+  position:fixed; inset:0; z-index:5; pointer-events:none;
+  opacity:0; transition:opacity 1s ease;
+}
+#fireflyField.show{ opacity:1; }
+.firefly{
+  position:absolute; width:6px; height:6px; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,238,190,1) 0%, rgba(232,199,116,.7) 45%, transparent 75%);
+  box-shadow:0 0 8px 2px rgba(232,199,116,.55);
+  animation-timing-function:ease-in-out; animation-iteration-count:infinite;
+}
+@keyframes firefly-a{
+  0%{ transform:translate(0,0) scale(1); opacity:.2; }
+  20%{ opacity:1; }
+  50%{ transform:translate(26px,-32px) scale(1.15); opacity:.55; }
+  75%{ opacity:1; }
+  100%{ transform:translate(-16px,-58px) scale(.9); opacity:.15; }
+}
+@keyframes firefly-b{
+  0%{ transform:translate(0,0) scale(.9); opacity:.15; }
+  25%{ opacity:.9; }
+  55%{ transform:translate(-30px,-20px) scale(1.1); opacity:.5; }
+  80%{ opacity:1; }
+  100%{ transform:translate(18px,-50px) scale(1); opacity:.1; }
+}
+@keyframes firefly-c{
+  0%{ transform:translate(0,0) scale(1); opacity:.22; }
+  30%{ opacity:1; }
+  60%{ transform:translate(18px,28px) scale(.95); opacity:.5; }
+  85%{ opacity:1; }
+  100%{ transform:translate(-24px,-12px) scale(1.1); opacity:.18; }
+}
+@keyframes firefly-d{
+  0%{ transform:translate(0,0) scale(.85); opacity:.2; }
+  35%{ opacity:.85; }
+  65%{ transform:translate(-20px,34px) scale(1.05); opacity:.45; }
+  90%{ opacity:1; }
+  100%{ transform:translate(22px,10px) scale(.9); opacity:.15; }
 }
 /* ---------- reset confirm ---------- */
 .confirm-box{position:fixed; inset:0; z-index:70; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; padding:20px;}
