@@ -22,7 +22,7 @@
        kept as a dark silhouette with only a thin warm rim-light (no image
        files, no fonts, nothing extra to fetch, so it paints instantly). -->
   <svg class="dwarf-walker" viewBox="0 0 70 92" width="56" height="74" aria-hidden="true">
-    <ellipse class="dw-flame-glow" cx="59" cy="13" rx="10" ry="10"></ellipse>
+    <ellipse class="dw-flame-glow" cx="61" cy="8" rx="10" ry="10"></ellipse>
     <g class="dw-leg dw-leg-back"><rect x="20" y="68" width="13" height="20" rx="4"></rect></g>
     <g class="dw-leg dw-leg-front"><rect x="35" y="68" width="13" height="20" rx="4"></rect></g>
     <path class="dw-robe" d="M15 40 C15 29 22 21 34 21 C46 21 53 29 53 40 L55 66 C55 73 49 77 41 77 L25 77 C17 77 13 73 13 66 Z"></path>
@@ -32,7 +32,10 @@
     <path class="dw-beard" d="M25 19 C23 29 25 40 30 47 C31 49 37 49 38 47 C43 40 45 29 43 19 C39 23 29 23 25 19 Z"></path>
     <path class="dw-arm" d="M50 45 C58 41 61 32 61 23"></path>
     <rect class="dw-candle" x="58" y="11" width="6" height="15" rx="2"></rect>
-    <ellipse class="dw-flame" cx="61" cy="8" rx="3" ry="5"></ellipse>
+    <!-- Flame's wick point sits exactly at the candle tip (61,11) — the
+         flicker animation below pivots from that same point so the base
+         stays pinned to the wick and only the tip sways/scales. -->
+    <ellipse class="dw-flame" cx="61" cy="6" rx="3" ry="5"></ellipse>
   </svg>
   <p class="loading-text">Membuka Gerbang Rentang...</p>
 </div>
@@ -59,6 +62,27 @@
     <span class="puff p4"></span><span class="puff p5"></span><span class="puff p6"></span>
   </div>
   <div class="gate-glow"></div>
+</div>
+
+<!-- Firefly swarm shown only on the Quest Complete screen — a callback to
+     Kunang, the little light-spirit guide. Pure CSS-animated dots. -->
+<div id="fireflyField" aria-hidden="true">
+  <span class="firefly" style="left:8%; top:70%; animation-name:firefly-a; animation-duration:8.5s; animation-delay:.2s;"></span>
+  <span class="firefly" style="left:18%; top:35%; animation-name:firefly-b; animation-duration:9.5s; animation-delay:1.4s;"></span>
+  <span class="firefly" style="left:28%; top:58%; animation-name:firefly-c; animation-duration:7.2s; animation-delay:.8s;"></span>
+  <span class="firefly" style="left:38%; top:22%; animation-name:firefly-d; animation-duration:10.5s; animation-delay:2.1s;"></span>
+  <span class="firefly" style="left:48%; top:75%; animation-name:firefly-a; animation-duration:8s; animation-delay:.5s;"></span>
+  <span class="firefly" style="left:58%; top:40%; animation-name:firefly-b; animation-duration:9s; animation-delay:1.8s;"></span>
+  <span class="firefly" style="left:68%; top:62%; animation-name:firefly-c; animation-duration:11s; animation-delay:.3s;"></span>
+  <span class="firefly" style="left:78%; top:28%; animation-name:firefly-d; animation-duration:7.8s; animation-delay:2.6s;"></span>
+  <span class="firefly" style="left:88%; top:68%; animation-name:firefly-a; animation-duration:9.8s; animation-delay:1.1s;"></span>
+  <span class="firefly" style="left:12%; top:15%; animation-name:firefly-b; animation-duration:8.3s; animation-delay:2.9s;"></span>
+  <span class="firefly" style="left:92%; top:45%; animation-name:firefly-c; animation-duration:10.2s; animation-delay:.6s;"></span>
+  <span class="firefly" style="left:5%; top:50%; animation-name:firefly-d; animation-duration:7.5s; animation-delay:1.7s;"></span>
+  <span class="firefly" style="left:33%; top:85%; animation-name:firefly-a; animation-duration:9.2s; animation-delay:.9s;"></span>
+  <span class="firefly" style="left:63%; top:12%; animation-name:firefly-b; animation-duration:11.4s; animation-delay:2.3s;"></span>
+  <span class="firefly" style="left:73%; top:82%; animation-name:firefly-c; animation-duration:8.7s; animation-delay:1.5s;"></span>
+  <span class="firefly" style="left:95%; top:20%; animation-name:firefly-d; animation-duration:9.6s; animation-delay:.4s;"></span>
 </div>
 
 <!-- INTRO / TITLE SCREEN -->
