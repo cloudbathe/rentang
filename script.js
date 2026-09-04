@@ -25,14 +25,14 @@ const CHAPTERS = [
 ];
 
 const MEMORY_OBJECTS = [
-  {id:'shirt', name:'Kaos penyanyi asal Pennsylvania', desc:'Kaos konser yang muncul begitu saja, dadakan, penuh niat.', hint:'Ini kado pertama yang pernah diberikan — jauh sebelum semua ini jadi kebiasaan.', year:'2020'},
+  {id:'shirt', name:'Kaos penyanyi asal Pennsylvania', desc:'Kaos pelantun "Everything Has Changed" yang muncul begitu saja. Dadakan.', hint:'Ini kado pertama yang pernah diberikan — jauh sebelum semua ini jadi kebiasaan.', year:'2020'},
   {id:'lamp', name:'Lampu Canggih Ajaib', desc:'Bisa ganti warna sesuai suasana hati. Sering dipakai buat bercanda receh.', hint:'Datang bareng si kaos, di tahun yang persis sama.', year:'2020'},
   {id:'banana', name:'Pisang Bakar Ceres yang Gagal', desc:'Dimasak sambil senyum-senyum, ternyata rasanya tidak seampuh lampu ajaib.', hint:'Ini terjadi setahun setelah kaos & lampu, tepat sebelum buru-buru ke Baturaden.', year:'2021'},
 ];
 
 const ZODIAC_WHEEL = [
-  {y:1996, animal:'Tikus Api'}, {y:1997, animal:'Kerbau Api'}, {y:1998, animal:'Macan Tanah'},
-  {y:1999, animal:'Kelinci Tanah'}, {y:2000, animal:'Naga Logam'}, {y:2001, animal:'Ular Logam'},
+  {y:1995, animal:'Babi Kayu'}, {y:1996, animal:'Tikus Api'}, {y:1997, animal:'Kerbau Api'},
+  {y:1998, animal:'Macan Tanah'}, {y:1999, animal:'Kelinci Tanah'}, {y:2000, animal:'Naga Logam'},
 ];
 
 const CIPHER_KEY = [
@@ -184,20 +184,44 @@ const scenesEl = $('#scenes');
 let sceneBuilders = {}; // key -> function returning HTMLElement
 function registerScene(key, builder){ sceneBuilders[key]=builder; }
 function goScene(key, chapterTagText, questText){
+  // The ending gets a grander reveal — a stone gate swinging open — instead
+  // of the usual quick fade every other scene transition uses.
+  if(key === 'ending'){
+    playGateOpen(()=> renderSceneNow(key, chapterTagText, questText));
+    return;
+  }
   const overlay = $('#fadeOverlay');
   overlay.classList.add('show');
   setTimeout(()=>{
-    scenesEl.querySelectorAll('.scene').forEach(s=>s.remove());
-    const built = sceneBuilders[key]();
-    built.classList.add('scene');
-    scenesEl.appendChild(built);
-    requestAnimationFrame(()=> requestAnimationFrame(()=> built.classList.add('active')));
-    if(chapterTagText) $('#chapterTag').textContent = chapterTagText;
-    if(questText) $('#questLine').textContent = questText;
-    state.currentScene = key; saveState();
+    renderSceneNow(key, chapterTagText, questText);
     overlay.classList.remove('show');
-    scenesEl.scrollTop = 0;
   }, 260);
+}
+function renderSceneNow(key, chapterTagText, questText){
+  scenesEl.querySelectorAll('.scene').forEach(s=>s.remove());
+  const built = sceneBuilders[key]();
+  built.classList.add('scene');
+  scenesEl.appendChild(built);
+  requestAnimationFrame(()=> requestAnimationFrame(()=> built.classList.add('active')));
+  if(chapterTagText) $('#chapterTag').textContent = chapterTagText;
+  if(questText) $('#questLine').textContent = questText;
+  state.currentScene = key; saveState();
+  scenesEl.scrollTop = 0;
+}
+/**
+ * Plays a stone-gate-opening transition, then reveals the scene mid-swing
+ * (through the widening gap, right as the light bursts) — a bit more
+ * ceremonial than the plain fade, only for the Quest Complete moment.
+ * Falls back to an instant reveal if the gate markup isn't in the page.
+ */
+function playGateOpen(next){
+  const overlay = $('#gateOverlay');
+  if(!overlay){ next(); return; }
+  overlay.classList.add('show');
+  void overlay.offsetWidth; // force reflow so re-adding "opening" retriggers the transition on replay
+  requestAnimationFrame(()=> requestAnimationFrame(()=> overlay.classList.add('opening')));
+  setTimeout(next, 650);
+  setTimeout(()=> overlay.classList.remove('show','opening'), 1900);
 }
 
 /* ---------- PROLOGUE ---------- */
@@ -222,7 +246,7 @@ registerScene('prologue', ()=>{
 const CH1_SPOTS = [
   {id:'window', emoji:'🪟', label:'Jendela kayu', note:'Cahaya bulan masuk lewat sini. Ada empat jendela kalau dihitung — kamu baru sadar sekarang.'},
   {id:'lamp', emoji:'🏮', label:'Lampu gantung', note:'Nyalanya berubah warna sendiri. Rasanya familiar... seperti pernah ada yang punya lampu begini juga.'},
-  {id:'shelf', emoji:'📚', label:'Rak buku tua', note:'Salah satu buku berjudul "Catatan Perjalanan — Lima Musim". Empat halaman terisi, satu halaman kosong, menunggu diisi. Ada 3 batang lilin menyala di sebelahnya.'},
+  {id:'shelf', emoji:'📚', label:'Rak buku tua', note:'Salah satu buku berjudul "Catatan Perjalanan — Enam Musim". Lima halaman terisi, satu halaman kosong, menunggu diisi. Ada 3 batang lilin menyala di sebelahnya.'},
   {id:'hearth', emoji:'🔥', label:'Perapian', note:'Api di sini tidak panas, hanya hangat. Persis seperti sentuhan Babi Kayu, suatu malam.'},
 ];
 registerScene('ch1_intro', ()=>{
