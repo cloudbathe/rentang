@@ -16,8 +16,28 @@
      no images, just CSS, so it paints the moment the page arrives instead
      of leaving a blank tab that looks like a broken link. -->
 <div id="loadingScreen">
-  <div class="loading-spinner"></div>
+  <!-- Lightweight loading mark: a small hooded traveler carrying a candle,
+       walking in place. Pure inline SVG + CSS keyframes — no image files,
+       no fonts, nothing extra to fetch, so it paints instantly. -->
+  <svg class="dwarf-walker" viewBox="0 0 64 88" width="52" height="72" aria-hidden="true">
+    <ellipse class="dw-flame-glow" cx="53" cy="10" rx="9" ry="9"></ellipse>
+    <g class="dw-leg dw-leg-back"><rect x="24" y="66" width="9" height="18" rx="4"></rect></g>
+    <g class="dw-leg dw-leg-front"><rect x="34" y="66" width="9" height="18" rx="4"></rect></g>
+    <path class="dw-robe" d="M32 8 C19 8 13 21 13 33 L13 72 C13 78 18 82 25 82 L41 82 C47 82 52 78 52 72 L52 33 C52 21 45 8 32 8 Z"></path>
+    <path class="dw-hood" d="M32 8 C24 8 19 15 18 24 C22 20 27 18 32 18 C37 18 42 20 46 24 C45 15 40 8 32 8 Z"></path>
+    <path class="dw-arm" d="M43 42 C49 39 52 32 53 25"></path>
+    <rect class="dw-candle" x="50" y="12" width="6" height="15" rx="2"></rect>
+    <ellipse class="dw-flame" cx="53" cy="9" rx="3" ry="5"></ellipse>
+  </svg>
   <p class="loading-text">Membuka Gerbang Rentang...</p>
+</div>
+
+<!-- Gate-opening reveal used only for the ending (Quest Complete) — two
+     stone doors that swing apart with a burst of light. -->
+<div id="gateOverlay" aria-hidden="true">
+  <div class="gate-glow"></div>
+  <div class="gate-panel gate-left"><div class="gate-carving"></div></div>
+  <div class="gate-panel gate-right"><div class="gate-carving"></div></div>
 </div>
 
 <!-- INTRO / TITLE SCREEN -->
