@@ -16,18 +16,23 @@
      no images, just CSS, so it paints the moment the page arrives instead
      of leaving a blank tab that looks like a broken link. -->
 <div id="loadingScreen">
-  <!-- Lightweight loading mark: a small hooded traveler carrying a candle,
-       walking in place. Pure inline SVG + CSS keyframes — no image files,
-       no fonts, nothing extra to fetch, so it paints instantly. -->
-  <svg class="dwarf-walker" viewBox="0 0 64 88" width="52" height="72" aria-hidden="true">
-    <ellipse class="dw-flame-glow" cx="53" cy="10" rx="9" ry="9"></ellipse>
-    <g class="dw-leg dw-leg-back"><rect x="24" y="66" width="9" height="18" rx="4"></rect></g>
-    <g class="dw-leg dw-leg-front"><rect x="34" y="66" width="9" height="18" rx="4"></rect></g>
-    <path class="dw-robe" d="M32 8 C19 8 13 21 13 33 L13 72 C13 78 18 82 25 82 L41 82 C47 82 52 78 52 72 L52 33 C52 21 45 8 32 8 Z"></path>
-    <path class="dw-hood" d="M32 8 C24 8 19 15 18 24 C22 20 27 18 32 18 C37 18 42 20 46 24 C45 15 40 8 32 8 Z"></path>
-    <path class="dw-arm" d="M43 42 C49 39 52 32 53 25"></path>
-    <rect class="dw-candle" x="50" y="12" width="6" height="15" rx="2"></rect>
-    <ellipse class="dw-flame" cx="53" cy="9" rx="3" ry="5"></ellipse>
+  <!-- Lightweight loading mark: a stocky, bearded dwarf warrior — broad
+       pauldron-armored shoulders, a big beard, short thick legs — walking
+       at night carrying a small candle. Pure inline SVG + CSS keyframes,
+       kept as a dark silhouette with only a thin warm rim-light (no image
+       files, no fonts, nothing extra to fetch, so it paints instantly). -->
+  <svg class="dwarf-walker" viewBox="0 0 70 92" width="56" height="74" aria-hidden="true">
+    <ellipse class="dw-flame-glow" cx="59" cy="13" rx="10" ry="10"></ellipse>
+    <g class="dw-leg dw-leg-back"><rect x="20" y="68" width="13" height="20" rx="4"></rect></g>
+    <g class="dw-leg dw-leg-front"><rect x="35" y="68" width="13" height="20" rx="4"></rect></g>
+    <path class="dw-robe" d="M15 40 C15 29 22 21 34 21 C46 21 53 29 53 40 L55 66 C55 73 49 77 41 77 L25 77 C17 77 13 73 13 66 Z"></path>
+    <circle class="dw-pauldron" cx="16" cy="39" r="8"></circle>
+    <circle class="dw-pauldron" cx="52" cy="39" r="8"></circle>
+    <circle class="dw-head" cx="34" cy="15" r="10"></circle>
+    <path class="dw-beard" d="M25 19 C23 29 25 40 30 47 C31 49 37 49 38 47 C43 40 45 29 43 19 C39 23 29 23 25 19 Z"></path>
+    <path class="dw-arm" d="M50 45 C58 41 61 32 61 23"></path>
+    <rect class="dw-candle" x="58" y="11" width="6" height="15" rx="2"></rect>
+    <ellipse class="dw-flame" cx="61" cy="8" rx="3" ry="5"></ellipse>
   </svg>
   <p class="loading-text">Membuka Gerbang Rentang...</p>
 </div>
